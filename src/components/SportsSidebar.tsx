@@ -16,8 +16,8 @@ export default function SportsSidebar() {
             {sports.map((sport) => {
               return (
                 <li key={sport.ID} className='flex justify-between items-center p-4'>
-                  <span>{sport.name}</span>
-                  <span>{"asdasd"}</span>
+                  <span>{sport.Name}</span>
+                  <span>{sport.Name}</span>
                 </li>
               );
             })}
