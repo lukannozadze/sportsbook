@@ -5,7 +5,6 @@ import SearchBar from "./components/SearchBar"
 import SportsSidebar from "./components/SportsSidebar"
 
 function App() {
-
   return (
     <div className="w-full h-screen flex gap-4 bg-[#26292F] pt-9 px-2"> 
     <div className="w-3xs max-w-3xs">

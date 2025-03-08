@@ -1,23 +1,26 @@
-import { createContext, PropsWithChildren, useEffect } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useGetTree } from "@/services/tree";
+import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 
-type PopupTypes = "signIn" | "report";
 type AppContextT = {
-  signInModalOpen: boolean;
-  reportModalOpen: boolean;
-  setOpenModal: (open: boolean, type: PopupTypes) => void;
+ sports:any
 };
 
 export const AppContext = createContext<AppContextT | null>(null);
 
 export const AppProvider = ({ children }: PropsWithChildren) => {
-  
+  const [sports,setSports] = useState([]);
+  const {data} = useGetTree();
 
   useEffect(() => {
-   //initial request here
-  }, []);
-
+    if (!data) return;
+    // Get the first 10 items from the object (values)
+    const first10Sports = Object.values(data.EN.Sports).slice(0, 10);
+    setSports(first10Sports);
+  }, [data]);
+console.log(sports);
   const value = {
-   
+   sports,
   };
 
   return (
@@ -27,7 +30,7 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
   );
 };
 
-export const usePopupProvider = () => {
+export const useAppProvider = () => {
   const context = useContext(AppContext);
 
   if (!context) {
