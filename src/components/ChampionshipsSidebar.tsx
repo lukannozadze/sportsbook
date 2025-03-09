@@ -1,14 +1,7 @@
-import React from 'react'
-import Divider from './ui/divider'
 
 export default function ChampionshipsSidebar() {
   return (
    <div className='w-full h-content bg-[#2E3740] my-4'>
-     <div className='flex justify-between items-center p-4'>
-        <span className='text-white'>All Games</span>
-        <span className='text-white'>2328</span>
-     </div>
-     <Divider/>
      <div>
         <ul>
             <li className='flex justify-between items-center p-4'>

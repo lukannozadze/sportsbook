@@ -20,6 +20,7 @@ export type Champ = {
     N:number,
     name:string
     inTop:boolean
+    GameCount:number
     GameSmallItems: Record<string, GameSmallItem>
 }
 export type GameSmallItem = {
@@ -34,4 +35,14 @@ export type GameSmallItem = {
     plng:string,
     t1:number,
     t2:number
+}
+
+export type TreeObjectT = {
+    EN:{
+        Language:number,
+        LastUpdateTime:number,
+        header:boolean,
+        up:number,
+        Sports:Record<string, Sport>
+    }
 }
