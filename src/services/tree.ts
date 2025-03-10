@@ -1,6 +1,6 @@
 "use client";
 
-import { TreeObjectT } from "@/types";
+import { TeamObjectT, TreeObjectT } from "@/types";
 import request from "@/utils/request";
 import { ROUTES } from "@/utils/routes";
 import { useQuery } from "@tanstack/react-query";
@@ -10,5 +10,12 @@ export const useGetTree = () =>{
     queryKey:['get/tree'],
     queryFn: async (): Promise<TreeObjectT> =>
       request({url:ROUTES.getTree}),
+  });
+}
+export const useGetTeams = () =>{
+  return useQuery({
+    queryKey:['get/teams'],
+    queryFn: async (): Promise<TeamObjectT> =>
+      request({url:ROUTES.getTeams}),
   });
 }

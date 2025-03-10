@@ -46,3 +46,10 @@ export type TreeObjectT = {
         Sports:Record<string, Sport>
     }
 }
+
+export type TeamObjectT = {
+    ID:number,
+    Name:string,
+    Sport:number,
+    TeamExternalId:null
+}

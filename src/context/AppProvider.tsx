@@ -1,5 +1,5 @@
-import { useGetTree } from "@/services/tree";
-import { Sport } from "@/types";
+import { useGetTeams, useGetTree } from "@/services/tree";
+import { Sport,TeamObjectT } from "@/types";
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from "react";
 
 type AppContextT = {
@@ -21,15 +21,18 @@ export const AppContext = createContext<AppContextT | null>(null);
 export const AppProvider = ({ children }: PropsWithChildren) => {
   const [sports,setSports] = useState<Sport[]>([]);
   const [regions,setRegions] = useState<Sport[]>([]);
+  const [teams,setTeams] = useState<TeamObjectT[] | undefined>(undefined);
   const [allGameCount,setAllGameCount] = useState<number | null>(null);
   const [gameCountBySport,setGameCountBySport] = useState<Record<string,number>>({});
   const [selectedSports,setSelectedSports] = useState<string[]>([]);
   const [selectedChampionships,setSelectedChampionships] = useState<string[]>([]);
 
   const {data} = useGetTree();
+  const {data:teamsData} = useGetTeams();
+  console.log(teams);
 
   useEffect(() => {
-    if (!data) return;
+    if (!data || teamsData) return;
     setAllGameCount(Object.values(data.EN.Sports)
     .flatMap(s => Object.values(s.Regions).flatMap(r => Object.values(r.Champs)))
     .reduce((sum, c) => sum + c.GameCount, 0));
@@ -51,8 +54,9 @@ export const AppProvider = ({ children }: PropsWithChildren) => {
         : item.Regions
     }))
     setSports(sportsToShow);
+    setTeams(teamsData);
     setRegions(regionsToShow)
-  }, [data]);
+  }, [data,teamsData]);
 
   const selectSports = (sport:string) =>{
     setSelectedSports((prev) => {
