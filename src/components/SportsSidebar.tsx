@@ -4,8 +4,7 @@ import { useAppProvider } from "@/context/AppProvider";
 import Divider from "./ui/divider";
 
 export default function SportsSidebar() {
-  const { sports,allGameCount,selectSports,selectedSports } = useAppProvider();
-  console.log(selectedSports);
+  const { sports,allGameCount,selectSports,gameCountBySport } = useAppProvider();
   return (
     <div className="w-full h-content bg-[#2E3740] my-4 font-bold">
       <div className="flex justify-between items-center p-4 text-sm">
@@ -33,7 +32,7 @@ export default function SportsSidebar() {
                     <span className="text-sm text-white">{sport.Name}</span>
                   </div>
                   <span className="text-sm text-[#555A5E]">
-                    {Object.keys(sport.Regions).length}
+                  {gameCountBySport[`${sport.Name}`]}
                   </span>
                 </li>
               );
