@@ -29,7 +29,7 @@ import {useState } from "react";
             selectedSports.includes(sport.Name) && 
             Object.values(sport.Regions).slice(0,3).map(region => (
               <Accordion
-                key={region.ID} // Unique key
+                key={region.ID}
                 className="text-sm text-white font-bold"
                 type="single"
                 collapsible

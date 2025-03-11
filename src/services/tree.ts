@@ -15,7 +15,7 @@ export const useGetTree = () =>{
 export const useGetTeams = () =>{
   return useQuery({
     queryKey:['get/teams'],
-    queryFn: async (): Promise<TeamObjectT> =>
+    queryFn: async (): Promise<TeamObjectT[]> =>
       request({url:ROUTES.getTeams}),
   });
 }
